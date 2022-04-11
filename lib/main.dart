@@ -1,56 +1,54 @@
-import 'package:flutter/material.dart';
-import 'package:vega_embed_flutter/vega_embed_flutter.dart';
+// ignore_for_file: deprecated_member_use
 
-void main() {
+import 'package:flutter/material.dart';
+
+/* void main() {
   runApp(MyApp());
-}
+} */
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Vega Embed Demo'),
-    );
+  var questionIndex = 0;
+
+  void answerQuestion() {
+    questionIndex = questionIndex + 1;
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: AppBar(
-          centerTitle: true,
-          title: Text(widget.title),
+    var questions = [
+      'what\'s is your favorite anime?',
+      'How many episodes you ever watched?',
+    ];
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Test_App'),
         ),
-      ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: VegaLiteEmbedder(
-              viewFactoryId: 'seattle_weather.vl.json',
-              vegaLiteSpecLocation:
-                  'vega_lite_specs/interactive_cars_data.vl.json',
+        body: Column(
+          children: [
+            Text(
+              questions.elementAt(questionIndex),
             ),
-          ),
-        ],
+            RaisedButton(
+                child: Text('Answer 1'),
+                onPressed: () => print('Answer 1 clicked')),
+            RaisedButton(
+                child: Text('Answer 2'),
+                onPressed: () {
+                  print('Answer 2 chosen');
+                }),
+            RaisedButton(
+                child: Text('Answer 3'),
+                onPressed: () => print("Button 3 smashed")),
+            RaisedButton(
+                child: Text('Answer 4'),
+                onPressed: () {
+                  print('4th button nearly haxxed');
+                }),
+          ],
+        ),
       ),
     );
   }
